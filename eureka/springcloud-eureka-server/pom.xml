@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.ccx.helloworld</groupId>
+  <artifactId>springcloud-eureka-server</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>springcloud-eureka-server</name>
+  <url>http://maven.apache.org</url>
+
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.1.6.RELEASE</version>
+  </parent>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputeEcoding>UTF-8</project.reporting.outputeEcoding>
+	<java.version>1.8</java.version>
+	<swagger.version>2.6.0</swagger.version>
+	<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+<!--      <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter</artifactId>
+       <version>${spring.boot.version}</version>
+   </dependency> -->
+<!--    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+   </dependency> -->
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-test</artifactId>
+       <scope>test</scope>
+   </dependency>
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-web</artifactId>
+   </dependency>
+    
+	<dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+   	</dependency>
+  </dependencies>
+  <dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Greenwich.RELEASE</version><!-- SpringBoot2.0 -->
+				<!-- <version>Edgware.SR4</version> --><!-- SpringBoot 1.5 -->
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
+	<repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+	<build>  
+          <plugins>  
+              <plugin>  
+                  <groupId>org.apache.maven.plugins</groupId>  
+                  <artifactId>maven-compiler-plugin</artifactId>  
+                  <configuration>  
+                      <source>${java.version}</source>  
+                      <target>${java.version}</target>  
+                 </configuration>  
+             </plugin>  
+         </plugins>  
+     </build>  
+</project>

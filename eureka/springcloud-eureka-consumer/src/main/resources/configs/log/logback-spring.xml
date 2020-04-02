@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<jmxConfigurator />
+	<!-- 日志脱敏-->
+	<!--<conversionRule conversionWord="msg"
+					converterClass="com.ccx.dp.framework.common.logback.message.encrypt.SensitiveMsgConverter"> </conversionRule>-->
+
+	<property name="LOG_HOME" value="/home/logs" />
+	<!-- 控制台输出日志 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<!-- 文件输出日志 (文件日期策略进行文件输出) -->
+	<appender name="FILE_DAILY_SIZE"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 支持多JVM同时操作同一个日志文件 -->
+		<prudent>true</prudent>
+
+		<!-- 按天来回滚，如果需要按小时来回滚，则设置为{yyyy-MM-dd_HH} -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/dr/drss.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<!-- 如果按天来回滚，则最大保存时间为1天，1天之前的都将被清理掉 -->
+			<maxHistory>30</maxHistory>
+			<!-- 按时间回滚的同时，按文件大小来回滚 -->
+			<timeBasedFileNamingAndTriggeringPolicy
+					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>500MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<!-- 日志输出格式 -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{TRACKING_LOG_SESSION_TOKEN_ID}] [%thread] %-5level %logger{36} [%file:%line] - %msg%n</Pattern>
+		</layout>
+	</appender>
+	<appender name="ASYNC_FILE_DAILY_SIZE" class="ch.qos.logback.classic.AsyncAppender">
+		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		<discardingThreshold>0</discardingThreshold>
+		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<queueSize>2048</queueSize>
+		<includeCallerData>true</includeCallerData>
+		<!-- 添加附加的appender,最多只能添加一个 -->
+		<appender-ref ref="FILE_DAILY_SIZE" />
+	</appender>
+
+
+	<!-- FLUME -->
+	<logger name="com.gilt.logback" level="ERROR" />
+	<logger name="com.logback.appender" level="ERROR" />
+	<logger name="com.netflix" level="ERROR" />
+	<logger name="io.lettuce" level="ERROR" />
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="org.apache" level="ERROR" />
+	<logger name="org.ehcache" level="ERROR" />
+	<logger name="com.alibaba.dubbo" level="ERROR" />
+	<!--这里指定logger name 是为jmx设置日志级别做铺垫 -->
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+		<!-- <appender-ref ref="ASYNC_FLUME_APPENDER" /> -->
+	</root>
+</configuration>
