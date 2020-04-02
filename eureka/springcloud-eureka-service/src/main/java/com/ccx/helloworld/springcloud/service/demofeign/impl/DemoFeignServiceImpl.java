@@ -1,19 +1,30 @@
-package com.ccx.helloworld.springcloud.controller;
+package com.ccx.helloworld.springcloud.service.demofeign.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ccx.helloworld.springcloud.service.DemoFeignService;
 import com.ccx.helloworld.springcloud.service.entity.UserDemo;
+import com.ccx.helloworld.springcloud.service.thread.LogTraceThreadDemoService;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 
 @RestController
+@Slf4j
 //@RequestMapping("/feign-service")
 public class DemoFeignServiceImpl implements DemoFeignService {
 
+	@Autowired
+	private LogTraceThreadDemoService logTraceThreadDemoService;
+	
 	@Override
 	public String helloService(String name) {
 		// TODO Auto-generated method stub
+//		logger.
+		log.info("hello :{}",name);
+		logTraceThreadDemoService.testThreadLogTrace();
 		return "hello "+name+"!";
 	}
 

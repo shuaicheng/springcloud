@@ -9,7 +9,7 @@
 	<!-- 控制台输出日志 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<pattern>-%date{yyyy-MM-dd	HH:mm:ss.SSS}-|%X{CLIENT_IP}|%X{X-B3-TraceId:-}|${springAppName}|[%level]|[%thread] %-5level %logger{36} [%file:%method:%line] - %msg%n</pattern>
 		</layout>
 	</appender>
 
@@ -32,7 +32,7 @@
 		</rollingPolicy>
 		<!-- 日志输出格式 -->
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{TRACKING_LOG_SESSION_TOKEN_ID}] [%thread] %-5level %logger{36} [%file:%line] - %msg%n</Pattern>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}-|%X{CLIENT_IP}|%X{X-B3-TraceId:-}|${springAppName}|[%thread] %-5level %logger{36} [%file:%method:%line] - %msg%n</Pattern>
 		</layout>
 	</appender>
 	<appender name="ASYNC_FILE_DAILY_SIZE" class="ch.qos.logback.classic.AsyncAppender">
@@ -45,18 +45,12 @@
 		<appender-ref ref="FILE_DAILY_SIZE" />
 	</appender>
 
-
-	<!-- FLUME -->
-	<logger name="com.gilt.logback" level="ERROR" />
-	<logger name="com.logback.appender" level="ERROR" />
-	<logger name="com.netflix" level="ERROR" />
-	<logger name="io.lettuce" level="ERROR" />
-	<logger name="org.springframework" level="ERROR" />
-	<logger name="org.apache" level="ERROR" />
-	<logger name="org.ehcache" level="ERROR" />
-	<logger name="com.alibaba.dubbo" level="ERROR" />
+	<logger name="com.netflix.discovery" level="ERROR">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
 	<!--这里指定logger name 是为jmx设置日志级别做铺垫 -->
-	<root level="DEBUG">
+	<root level="info">
 		<appender-ref ref="STDOUT" />
 		<!-- <appender-ref ref="ASYNC_FLUME_APPENDER" /> -->
 	</root>
