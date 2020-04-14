@@ -23,6 +23,12 @@ public class DemoFeignServiceImpl implements DemoFeignService {
 	public String helloService(String name) {
 		// TODO Auto-generated method stub
 //		logger.
+		try {
+			Thread.sleep(500);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		log.info("hello :{}",name);
 		logTraceThreadDemoService.testThreadLogTrace();
 		return "hello "+name+"!";

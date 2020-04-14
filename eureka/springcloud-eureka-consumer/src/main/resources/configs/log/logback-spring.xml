@@ -9,7 +9,7 @@
 	<!-- 控制台输出日志 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>--%d{yyyy-MM-dd HH:mm:ss.SSS}|%X{CLIENT_IP}|%X{X-B3-TraceId:-}|[%level][%thread][%logger]-%msg%n</pattern>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%X{X-B3-TraceId:-}][%X{CLIENT_IP}][%level][%thread]%-5level %logger{36} [%file:%method:%line] - %msg%n</pattern>
 		</layout>
 	</appender>
 
@@ -32,7 +32,7 @@
 		</rollingPolicy>
 		<!-- 日志输出格式 -->
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>|%date{yyyy-MM-dd HH:mm:ss.SSS}|%X{X-B3-TraceId:-}|${springAppName}|[%level][%thread][%logger]-%msg%n</Pattern>
+			<Pattern>[%X{X-B3-TraceId:-}][%date{yyyy-MM-dd HH:mm:ss.SSS}][%level][%thread][%logger]-%msg%n</Pattern>
 		</layout>
 	</appender>
 	<appender name="ASYNC_FILE_DAILY_SIZE" class="ch.qos.logback.classic.AsyncAppender">

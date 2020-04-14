@@ -124,6 +124,12 @@
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 		 </dependency>
+		 <!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-okhttp -->
+		<dependency>
+		    <groupId>io.github.openfeign</groupId>
+		    <artifactId>feign-okhttp</artifactId>
+		</dependency>
+		 
     </dependencies>
 	  <dependencyManagement>
 			<dependencies>

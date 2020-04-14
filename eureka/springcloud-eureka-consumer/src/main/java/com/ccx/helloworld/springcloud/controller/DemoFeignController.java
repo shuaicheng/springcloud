@@ -25,11 +25,11 @@ public class DemoFeignController {
 	public String demoServiceTest() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(demoFeignService.helloService("yuanyuan"));
-		log.info("result is :{}",demoFeignService.helloService("yuanyuan"));
+//		log.info("result is :{}",demoFeignService.helloService("yuanyuan"));
 		sb.append(demoFeignService.helloService("yjt","xixihaha"));
-		log.info("result is :{}",demoFeignService.helloService("yjt","xixihaha"));
+//		log.info("result is :{}",demoFeignService.helloService("yjt","xixihaha"));
 		sb.append(demoFeignService.helloService(new UserDemo("yejingtao","123456")));
-		log.info("result is :{}",demoFeignService.helloService(new UserDemo("yejingtao","123456")));
+//		log.info("result is :{}",demoFeignService.helloService(new UserDemo("yejingtao","123456")));
 		
 		logTraceThreadDemoService.testThreadLogTrace();
 		
