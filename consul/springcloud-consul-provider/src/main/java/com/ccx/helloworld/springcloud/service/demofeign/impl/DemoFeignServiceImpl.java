@@ -1,6 +1,7 @@
 package com.ccx.helloworld.springcloud.service.demofeign.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ccx.helloworld.springcloud.service.DemoFeignService;
@@ -19,19 +20,22 @@ public class DemoFeignServiceImpl implements DemoFeignService {
 	@Autowired
 	private LogTraceThreadDemoService logTraceThreadDemoService;
 	
+	@Value("${server.port}")
+	private String port;
+	
 	@Override
 	public String helloService(String name) {
 		// TODO Auto-generated method stub
 //		logger.
+		log.info("port:{},hello :{}",port,name);
 		try {
 			Thread.sleep(Integer.valueOf(name));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		log.info("hello :{}",name);
 		logTraceThreadDemoService.testThreadLogTrace();
-		return "hello "+name+"!";
+		return "hello "+name+"! My port is :" + port;
 	}
 
 	@Override

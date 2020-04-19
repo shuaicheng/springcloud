@@ -32,7 +32,7 @@
 		</rollingPolicy>
 		<!-- 日志输出格式 -->
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>[%X{X-B3-TraceId:-}][%date{yyyy-MM-dd HH:mm:ss.SSS}][%level][%thread][%logger]-%msg%n</Pattern>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}-|%X{CLIENT_IP}|%X{X-B3-TraceId:-}|${springAppName}|[%thread] %-5level %logger{36} [%file:%method:%line] - %msg%n</Pattern>
 		</layout>
 	</appender>
 	<appender name="ASYNC_FILE_DAILY_SIZE" class="ch.qos.logback.classic.AsyncAppender">
@@ -44,12 +44,13 @@
 		<!-- 添加附加的appender,最多只能添加一个 -->
 		<appender-ref ref="FILE_DAILY_SIZE" />
 	</appender>
-	
-	<logger name="okhttp3" level="DEBUG">
-		<appender-ref ref="STDOUT"></appender-ref>
+
+	<logger name="com.netflix.discovery" level="ERROR">
+		<appender-ref ref="STDOUT" />
 	</logger>
+	
 	<!--这里指定logger name 是为jmx设置日志级别做铺垫 -->
-	<root level="debug">
+	<root level="info">
 		<appender-ref ref="STDOUT" />
 		<!-- <appender-ref ref="ASYNC_FLUME_APPENDER" /> -->
 	</root>
