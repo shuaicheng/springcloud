@@ -1,0 +1,16 @@
+/target/
+
+### STS ###
+.classpath
+.project
+
+### Eclipse ###
+.settings
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+/.classpath
