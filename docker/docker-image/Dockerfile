@@ -1,4 +1,4 @@
-FROM dockerfile/java:oracle-java8
+FROM frolvlad/alpine-oraclejdk8:slim
 
 VOLUME /tmp
 ADD docker-image.jar /opt/docker-image/
