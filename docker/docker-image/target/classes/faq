@@ -1,5 +1,0 @@
-1、No plugin found for prefix 'dockerfile' in the current project
-	在maven的setting文件中增加
-	<pluginGroups>
-     <pluginGroup>com.spotify</pluginGroup>
-   </pluginGroups>
