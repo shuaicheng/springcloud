@@ -18,7 +18,7 @@
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <project.reporting.outputeEcoding>UTF-8</project.reporting.outputeEcoding>  	
 	    <dubbo.boot.version>0.2.1.RELEASE</dubbo.boot.version>
-  		<dubbo.version>2.6.4</dubbo.version>
+  		<dubbo.version>2.6.12</dubbo.version>
 		<java.version>1.8</java.version>
 		<swagger.version>2.9.2</swagger.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
